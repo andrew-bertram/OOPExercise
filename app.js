@@ -2,7 +2,7 @@
 
 // 1a
 const mulan = {
-    name: `Mulan`,
+    title: `Mulan`,
     main: `Fa Mulan`,
     // 1b
     quote: function () {
@@ -10,7 +10,7 @@ const mulan = {
     },
     // 1c
     storyline: function () {
-        return `The movie ${this.name} is about ${this.main}.`;
+        return `The movie ${this.title} is about ${this.main}.`;
     }
 }
 
@@ -41,10 +41,12 @@ DisneyMovie.prototype.storyline = function () {
 
 // 3c
 const mulan1 = new DisneyMovie(`Mulan`, `Fa Mulan`);
+console.log(mulan1);
 console.log(mulan1.storyline());
 
 // 3d
 const tangled1 = new DisneyMovie(`Tangled`, `Rapunzel`);
+console.log(tangled1);
 console.log(tangled1.storyline());
 
 // 4a
@@ -59,7 +61,7 @@ class DM {
     }
     // 4e
     static loveDisneyMovies() {
-        return `I Love Disney Movies!`
+        return `I Love Disney Movies!`;
     }
 }
 
@@ -73,21 +75,56 @@ const tangled2 = new DM(`Tangled`, `Rapunzel`);
 console.log(DM.loveDisneyMovies());
 
 // 5a
-class DM extends DMCast {
+class DMCast extends DM {
     // 5b
     constructor(title, main, cast) {
         // 5c
         super(title, main);
         this.cast = cast;
     }
+    // BONUS
+    // 6a
+    static create(title, main, cast) {
+        return new DMCast(title, main, cast);
+    }
 }
 
-// 5b
-const mulan3 = new DM(`Mulan`, `Fa Mulan`, {mulan: `Ming-Na Wen`, mushu: `Eddie Murphy`, shang: `BD Wong`, theEmperor: `Pat Morita`});
+// 5d
+const mulan3 = new DMCast(
+    `Mulan`,
+    `Fa Mulan`,
+    {
+        mulan: `Ming-Na Wen`,
+        mushu: `Eddie Murphy`,
+        shang: `BD Wong`,
+        theEmperor: `Pat Morita`
+    });
 console.log(mulan3);
 
 // 5e
-const rapunzel3 = new DM(`Tangled`, `Rapunzel`, {rapunzel: `Mandy Moore`, flynnRider: `Zachary Levi`, motherGothel: `Donna Murphy`});
+const rapunzel3 = new DMCast(
+    `Tangled`,
+    `Rapunzel`,
+    {
+        rapunzel: `Mandy Moore`,
+        flynnRider: `Zachary Levi`,
+        motherGothel: `Donna Murphy`
+    });
 console.log(rapunzel3);
 
 // BONUS
+// 6b
+const moana = DMCast.create(
+    `Moana`,
+    `Moana of Motunui`,
+    {
+        moana: `Auli'i Cravalho`,
+        maui: `Dwayne Johnson`,
+        grammaTala: `Rachel House`,
+        chiefTui: `Temuera Morrison`
+    }
+);
+
+// 6c
+console.log(moana);
+console.log(moana.storyline());
